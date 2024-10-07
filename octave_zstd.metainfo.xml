@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2024 Yu Hongbo <yuhongbo@member.fsf.org>, 
+  CNOCTAVE <cnoctave@qq.com>
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.  This file is offered as-is,
+without any warranty.
+-->
+<component type="addon">
+  <id>octave_zstd</id>
+  <extends>www.octave.org-octave.desktop</extends>
+  <name>octave_zstd</name>
+  <summary>Octave Use ZSTD to Compress and Decompress</summary>
+  <description>
+    <p>The octave_zstd package provides functions for compress and
+      decompress about ZSTD format.</p>
+  </description>
+    <keywords>
+    <keyword>ZSTD</keyword>
+    <keyword>compress</keyword>
+    <keyword>decompress</keyword>
+  </keywords>
+  <url type="homepage">http://octave.sourceforge.net/image</url>
+  <url type="bugtracker">https://savannah.gnu.org/bugs/?func=additem&amp;group=octave</url>
+  <project_license>GPL-3.0+</project_license>
+  <developer_name>various authors</developer_name>
+  <update_contact>cnoctave@qq.com</update_contact>
+  <metadata_license>FSFAP</metadata_license>
+</component>

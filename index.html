@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+Copyright 2024 Yu Hongbo <yuhongbo@member.fsf.org>, 
+  CNOCTAVE <cnoctave@qq.com>
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.  This file is offered as-is,
+without any warranty.
+-->
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width">
+    <meta name="theme-color" content="#00B4FF">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="msapplication-TileImage" content="/favicon.ico">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="apple-mobile-web-app-title" content="octave_zstd文档">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet" type="text/css">
+    <link href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" rel="stylesheet" type="text/css">
+    <link href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@^4.0.0/animate.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/quasar@2.17.0/dist/quasar.prod.css" rel="stylesheet" type="text/css">
+    <link href="assets/main.css" rel="stylesheet" type="text/css">
+    <title>octave_zstd文档</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <meta name="title" content="octave_zstd文档" data-qmeta="title">
+    <meta property="og:title" content="octave_zstd文档" data-qmeta="ogTitle">
+    <meta name="twitter:title" content="octave_zstd文档" data-qmeta="twitterTitle">
+    <meta name="description" content="Octave中文网是一个面向中文Octave开发者的交流平台，拥有中文Octave文档、中文Octave论坛和中文Octave新闻等特色。"
+        data-qmeta="description">
+    <meta property="og:description" content="Octave中文网是一个面向中文Octave开发者的交流平台，拥有中文Octave文档、中文Octave论坛和中文Octave新闻等特色。"
+        data-qmeta="ogDesc">
+    <meta name="twitter:description" content="Octave中文网是一个面向中文Octave开发者的交流平台，拥有中文Octave文档、中文Octave论坛和中文Octave新闻等特色。"
+        data-qmeta="twitterDesc">
+</head>
+
+<body>
+    <div id="q-app">
+        <q-layout view="hHh LpR fFf">
+            <q-header elevated class="bg-primary text-white">
+                <q-toolbar class="bg-primary text-white q-ny-md shadow-2">
+                    <q-btn stretch flat label="Octave中文网" @click="goTo('/index.html')"></q-btn>
+                    <q-separator dark vertical></q-separator>
+                    <q-btn stretch flat label="octave_zstd" @click="scrollToTop()"></q-btn>
+                    <q-separator dark vertical></q-separator>
+                    <q-space></q-space>
+                    <q-separator dark vertical></q-separator>
+                    <q-btn-dropdown stretch flat icon="translate" label="切换文档语言">
+                      <q-list>
+                        <q-item clickable v-close-popup @click="goTo('/index.html')">
+                          <q-item-section>
+                            <q-item-label>zh-CN 简体中文</q-item-label>
+                          </q-item-section>
+                        </q-item>
+                      </q-list>
+                    </q-btn-dropdown>
+                    <q-separator dark vertical></q-separator>
+                    <q-btn stretch flat label="中文版Octave文档" @click="goTo('/index.html')"></q-btn>
+                    <q-separator dark vertical></q-separator>
+                    <q-btn stretch flat label="学术交流论坛" @click="goTo('/index.html')"></q-btn>
+                    <q-separator dark vertical></q-separator>
+                    <q-btn stretch flat label="新闻" @click="goTo('https://octave.org/news.html')"></q-btn>
+                    <q-separator dark vertical></q-separator>
+                    <q-btn stretch flat label="使用方法" @click="goTo('https://wiki.octave.org/Using_Octave')"></q-btn>
+                    <q-separator dark vertical></q-separator>
+                    <q-btn stretch flat label="免费下载" @click="goTo('https://octave.org/download')"></q-btn>
+                </q-toolbar>
+            </q-header>
+            <q-drawer class="bg-primary" show-if-above v-model="leftDrawerOpen" side="left" bordered elevated>
+                <q-list class="title1 text-white bg-primary">
+                    <q-item clickable v-ripple @click="goToID('#homepage')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            项目首页
+                        </q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple @click="goToID('#online_install')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            在线安装
+                        </q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple @click="goToID('#source_code_install')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            源码安装
+                        </q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple @click="goToID('#how_to_use')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            如何使用
+                        </q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple @click="goToID('#dependencies')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            依赖库
+                        </q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple @click="goToID('#function_usage')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            函数用法
+                        </q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple @click="goToID('#common_examples')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            常见用例
+                        </q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple @click="goToID('#references')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            引用octave_zstd
+                        </q-item-section>
+                    </q-item>
+                </q-list>
+            </q-drawer>
+
+            <q-page-container>
+                <div style="position: relative;">
+                    <q-img src="/pic/banner0.png" spinner-color="white" style="width: 100%; height: 300px;"></q-img>
+                    <div class="q-mx-md rainbow-text"
+                        style="line-height: 300px; font-size: 100px; position: absolute; left: 0%; top: 0%;">octave_zstd文档
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="main">
+                        <div class="text-h5 q-ma-md text-red-10">欢迎广大开发者将此文档翻译为其他语言。</div>
+                        <q-btn id="homepage" class="title1 text-white bg-primary" stretch flat
+                            label="项目首页：http://qwqwwqwq.com" @click="goTo('/index.html')"></q-btn>
+                        <q-separator></q-separator>
+                        <div id="online_install" class="title1 q-ma-md text-primary">在线安装</div>
+                        <p class="q-ma-md">octave_zstd可以在线安装。</p>
+                        <div class="text-h5 q-ma-md text-red-10">在线安装octave_zstd，代码如下：</div>
+                        <p class="q-ma-md">>> pkg install -forge http://qwqwqwqwq.com/qwqwwqwq.tar.gz</p>
+                        <q-separator></q-separator>
+                        <div id="source_code_install" class="title1 q-ma-md text-primary">源码安装</div>
+                        <p class="q-ma-md">octave_zstd可以直接使用tar包安装。</p>
+                        <div class="text-h5 q-ma-md text-red-10">
+                            假设你下载的源码包名为octave_zstd.tar.gz，源码安装的代码如下：</div>
+                        <p class="q-ma-md">>> pkg install octave_zstd.tar.gz -local</p>
+                        <q-separator></q-separator>
+                        <div id="how_to_use" class="title1 q-ma-md text-primary">如何使用</div>
+                        <div class="text-h5 q-ma-md text-red-10">在安装后，加载octave_zstd即可使用，代码如下：</div>
+                        <p class="q-ma-md">>> pkg load octave_zstd</p>
+                        <q-separator></q-separator>
+                        <div id="dependencies" class="title1 q-ma-md text-primary">依赖库</div>
+                        <div class="text-h5 q-ma-md text-red-10">不同的Linux发行版有不同的依赖库名。</div>
+                        <div class="text-h5 q-ma-md text-red-10">Fedora：</div>
+                        <p class="q-ma-md">$ sudo dnf install libzstd libzstd-devel libzstd-static</p>
+                        <div class="text-h5 q-ma-md text-red-10">在其他的Linux发行版上的命令有所不同。欢迎广大开发者补充。
+                        </div>
+                        <q-separator></q-separator>
+                        <div id="function_usage" class="title1 q-ma-md text-primary">函数用法</div>
+                        <div class="text-h5 q-ma-md text-red-10">zstd_compress</div>
+                        <p class="q-ma-md">Loadable Function: 0 = zstd_compress(FILENAME, COMPRESSED_FILENAME)</p>
+                        <p class="q-ma-md">输入文件名FILENAME和压缩后的文件名COMPRESSED_FILENAME。总是输出0。</p>
+                        <q-separator></q-separator>
+                        <div class="text-h5 q-ma-md text-red-10">zstd_decompress</div>
+                        <p class="q-ma-md">Loadable Function: 0 = zstd_decompress(COMPRESSED_FILENAME,</p>
+                        <p class="q-ma-md">DECOMPRESSED_FILENAME)</p>
+                        <p class="q-ma-md">输入压缩文件名COMPRESSED_FILENAME和解压缩后的文件名</p>
+                        <p class="q-ma-md">DECOMPRESSED_FILENAME。总是输出0。</p>
+                        <q-separator></q-separator>
+                        <div class="text-h5 q-ma-md text-red-10">zstd_compress_string</div>
+                        <p class="q-ma-md">Loadable Function: COMPRESSED_STRING = zstd_compress_string(STRING)</p>
+                        <p class="q-ma-md">输入字符串STRING，返回压缩后的字符串COMPRESSED_STRING。</p>
+                        <q-separator></q-separator>
+                        <div class="text-h5 q-ma-md text-red-10">zstd_decompress_string</div>
+                        <p class="q-ma-md">Loadable Function: DECOMPRESSED_STRING =</p>
+                        <p class="q-ma-md">zstd_decompress_string(COMPRESSED_STRING)</p>
+                        <p class="q-ma-md">输入压缩后的字符串COMPRESSED_STRING，返回解压缩后的字符串</p>
+                        <p class="q-ma-md">DECOMPRESSED_STRING。</p>
+                        <q-separator></q-separator>
+                        <div id="common_examples" class="title1 q-ma-md text-primary">常见用例</div>
+                        <div class="text-h5 q-ma-md text-red-10">压缩一个名为file的文件为new_file，代码如下：</div>
+                        <p class="q-ma-md">>> zstd_compress("file", "new_file")</p>
+                        <div class="text-h5 q-ma-md text-red-10">解压缩一个名为new_file的文件为new_file_1，代码如下：</div>
+                        <p class="q-ma-md">>> zstd_decompress("new_file", "new_file_1")</p>
+                        <div class="text-h5 q-ma-md text-red-10">压缩一个字符串abcdefg，代码如下：</div>
+                        <p class="q-ma-md">>> compressed_string = zstd_compress_string("abcdefg")</p>
+                        <div class="text-h5 q-ma-md text-red-10">解压缩字符串，代码如下：</div>
+                        <p class="q-ma-md">>> decompressed_string = zstd_decompress_string(compressed_string)</p>
+                        <div id="references" class="title1 q-ma-md text-primary">引用octave_zstd</div>
+                        <div class="text-h5 q-ma-md text-red-10">如果你在学术研究中涉及octave_zstd，那么可以按需引用以下内容。</div>
+                        <div class="text-h5 q-ma-md text-red-10">octave_zstd源码(BibTeX)</div>
+                        <p class="q-ma-md">@misc{CNOCTAVE2024,
+                            author = {Yu, Hongbo},
+                            title = {octave_zstd},
+                            year = {2024},
+                            howpublished = {\url{https://github.com/username/repository}},
+                          }</p>
+                        <div class="text-h5 q-ma-md text-red-10">octave_zstd文档(BibTeX)</div>
+                        <p class="q-ma-md">@techreport{CNOCTAVE2024,
+                            author = {Yu, Hongbo},
+                            title = {octave_zstd Document},
+                            institution = {BA DU XIN SHANG},
+                            year = {2024},
+                            number = {1},
+                            month = {10},
+                            url = {http://www.someurl.com/path/to/doc.pdf},
+                            urldate = {2024-10-07},
+                          }</p>
+                        <div class="text-h5 q-ma-md text-red-10">octave_zstd: Efficient Compression and Decompression Utilizing the Octave Software with Zstandard(BibTeX)</div>
+                        <p class="q-ma-md" style="white-space: normal;">@unpublished{Hongbo2024,
+                            author = {Yu, Hongbo},
+                            title = {octave_zstd: Efficient Compression and Decompression Utilizing the Octave Software with Zstandard},
+                            year = {2024},
+                            note = {Available at \url{https://arxiv.org/abs/2410.00000}, arXiv:2410.00000 [cs.SE]},
+                          }</p>
+                    </div>
+                </div>
+                <q-toolbar class="bg-grey-8 text-white q-my-md shadow-2">
+                    <q-btn-dropdown stretch flat label="版权所有 ©">
+                      <q-list>
+                        <q-item clickable v-close-popup @click="goTo('/index.html')">
+                          <q-item-section>
+                            <q-item-label>© 2024 Yu Hongbo, CNOCTAVE</q-item-label>
+                          </q-item-section>
+                        </q-item>
+                      </q-list>
+                    </q-btn-dropdown>
+                    <q-separator dark vertical></q-separator>
+                    <q-btn stretch flat label="此文档受Creative Commons Attribution-NoDerivatives 4.0 International License协议保护。" 
+                    @click="goTo('https://creativecommons.org/licenses/by-nd/4.0/')"></q-btn>
+                    <q-separator dark vertical></q-separator>
+                    <q-btn stretch flat label="下载此文档的源码" 
+                    @click="goTo('index.html')"></q-btn>
+                </q-toolbar>
+            </q-page-container>
+
+        </q-layout>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quasar@2.17.0/dist/quasar.umd.prod.js"></script>
+    <script>
+
+        const App = {
+            data() {
+                return {
+                    scrollToTop() {
+                        window.scrollTo(0, 0);
+                    },
+                    goTo(target) {
+                        window.open(target, '_blank');
+                    },
+                    goToID(target) {
+                        window.open(target, '_self');
+                    },
+                    leftDrawerOpen: true,
+                };
+            },
+        };
+        const app = Vue.createApp(App);
+
+        app.use(Quasar)
+        app.mount('#q-app')
+    </script>
+</body>
+
+</html>

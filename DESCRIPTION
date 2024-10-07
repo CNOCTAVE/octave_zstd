@@ -1,0 +1,11 @@
+Name: octave_zstd
+Version: 1.0.0
+Date: 2024-09-27
+Author: various authors
+Maintainer: Yu Hongbo <yuhongbo@member.fsf.org>, CNOCTAVE <cnoctave@qq.com>
+Title: ZSTD wrapper
+Description: The octave_zstd package provides functions for compress and
+ decompress about ZSTD format.
+Depends: octave (>= 8.0.0)
+License: GPLv3+
+Url: http://octave.sf.net
