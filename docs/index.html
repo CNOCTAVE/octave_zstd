@@ -17,7 +17,7 @@ without any warranty.
     <meta name="theme-color" content="#00B4FF">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="msapplication-TileImage" content="/favicon.ico">
+    <meta name="msapplication-TileImage" content="favicon.ico">
     <meta name="msapplication-TileColor" content="#000000">
     <meta name="apple-mobile-web-app-title" content="octave_zstd文档">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet" type="text/css">
@@ -27,8 +27,8 @@ without any warranty.
     <link href="https://cdn.jsdelivr.net/npm/quasar@2.17.0/dist/quasar.prod.css" rel="stylesheet" type="text/css">
     <link href="assets/main.css" rel="stylesheet" type="text/css">
     <title>octave_zstd文档</title>
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <meta name="title" content="octave_zstd文档" data-qmeta="title">
     <meta property="og:title" content="octave_zstd文档" data-qmeta="ogTitle">
     <meta name="twitter:title" content="octave_zstd文档" data-qmeta="twitterTitle">
@@ -47,7 +47,7 @@ without any warranty.
                 <q-toolbar class="bg-primary text-white q-ny-md shadow-2">
                     <q-btn stretch flat label="Octave中文网" @click="goTo('index.html')"></q-btn>
                     <q-separator dark vertical></q-separator>
-                    <q-btn stretch flat label="octave_zstd" @click="scrollToTop()"></q-btn>
+                    <q-btn stretch flat label="octave_zstd文档" @click="scrollToTop()"></q-btn>
                     <q-separator dark vertical></q-separator>
                     <q-space></q-space>
                     <q-separator dark vertical></q-separator>
@@ -153,12 +153,12 @@ without any warranty.
                     <div class="main">
                         <div class="text-h5 q-ma-md text-red-10">欢迎广大开发者将此文档翻译为其他语言。</div>
                         <q-btn id="homepage" class="title1 text-white bg-primary" stretch flat
-                            label="项目首页：http://qwqwwqwq.com" @click="goTo('index.html')"></q-btn>
+                            label="项目首页：https://github.com/CNOCTAVE/octave_zstd" @click="goTo('https://github.com/CNOCTAVE/octave_zstd')"></q-btn>
                         <q-separator></q-separator>
                         <div id="online_install" class="title1 q-ma-md text-primary">在线安装</div>
                         <p class="q-ma-md">octave_zstd可以在线安装。</p>
                         <div class="text-h5 q-ma-md text-red-10">在线安装octave_zstd，代码如下：</div>
-                        <p class="q-ma-md">>> pkg install -forge http://qwqwqwqwq.com/qwqwwqwq.tar.gz</p>
+                        <p class="q-ma-md">>> pkg install -forge https://github.com/CNOCTAVE/octave_zstd/releases/download/1.0.0/octave_zstd-1.0.0.tar.gz</p>
                         <q-separator></q-separator>
                         <div id="source_code_install" class="title1 q-ma-md text-primary">源码安装</div>
                         <p class="q-ma-md">octave_zstd可以直接使用tar包安装。</p>
@@ -180,13 +180,14 @@ without any warranty.
                         <div id="function_usage" class="title1 q-ma-md text-primary">函数用法</div>
                         <div class="text-h5 q-ma-md text-red-10">zstd_compress</div>
                         <p class="q-ma-md">Loadable Function: 0 = zstd_compress(FILENAME, COMPRESSED_FILENAME)</p>
-                        <p class="q-ma-md">输入文件名FILENAME和压缩后的文件名COMPRESSED_FILENAME。总是输出0。</p>
+                        <p class="q-ma-md">输入文件名FILENAME和压缩后的文件名COMPRESSED_FILENAME。</p>
+                        <p class="q-ma-md">总是返回0。</p>
                         <q-separator></q-separator>
                         <div class="text-h5 q-ma-md text-red-10">zstd_decompress</div>
                         <p class="q-ma-md">Loadable Function: 0 = zstd_decompress(COMPRESSED_FILENAME,</p>
                         <p class="q-ma-md">DECOMPRESSED_FILENAME)</p>
                         <p class="q-ma-md">输入压缩文件名COMPRESSED_FILENAME和解压缩后的文件名</p>
-                        <p class="q-ma-md">DECOMPRESSED_FILENAME。总是输出0。</p>
+                        <p class="q-ma-md">DECOMPRESSED_FILENAME。总是返回0。</p>
                         <q-separator></q-separator>
                         <div class="text-h5 q-ma-md text-red-10">zstd_compress_string</div>
                         <p class="q-ma-md">Loadable Function: COMPRESSED_STRING = zstd_compress_string(STRING)</p>
@@ -199,49 +200,59 @@ without any warranty.
                         <p class="q-ma-md">DECOMPRESSED_STRING。</p>
                         <q-separator></q-separator>
                         <div id="common_examples" class="title1 q-ma-md text-primary">常见用例</div>
-                        <div class="text-h5 q-ma-md text-red-10">压缩一个名为file的文件为new_file，代码如下：</div>
-                        <p class="q-ma-md">>> zstd_compress("file", "new_file")</p>
-                        <div class="text-h5 q-ma-md text-red-10">解压缩一个名为new_file的文件为new_file_1，代码如下：</div>
-                        <p class="q-ma-md">>> zstd_decompress("new_file", "new_file_1")</p>
+                        <div class="text-h5 q-ma-md text-red-10">压缩一个名为file的文件为file.zst，代码如下：</div>
+                        <p class="q-ma-md">>> zstd_compress("file", "file.zst")</p>
+                        <div class="text-h5 q-ma-md text-red-10">解压缩一个名为file.zst的文件为new_file，代码如下：</div>
+                        <p class="q-ma-md">>> zstd_decompress("file.zst", "new_file")</p>
                         <div class="text-h5 q-ma-md text-red-10">压缩一个字符串abcdefg，代码如下：</div>
                         <p class="q-ma-md">>> compressed_string = zstd_compress_string("abcdefg")</p>
                         <div class="text-h5 q-ma-md text-red-10">解压缩字符串，代码如下：</div>
                         <p class="q-ma-md">>> decompressed_string = zstd_decompress_string(compressed_string)</p>
+                        <q-separator></q-separator>
                         <div id="references" class="title1 q-ma-md text-primary">引用octave_zstd</div>
                         <div class="text-h5 q-ma-md text-red-10">如果你在学术研究中涉及octave_zstd，那么可以按需引用以下内容。</div>
                         <div class="text-h5 q-ma-md text-red-10">octave_zstd源码(BibTeX)</div>
                         <p class="q-ma-md">@misc{CNOCTAVE2024,
-                            author = {Yu, Hongbo},
+                            author = {Yu Hongbo, },
                             title = {octave_zstd},
                             year = {2024},
-                            howpublished = {\url{https://github.com/username/repository}},
+                            howpublished = {\url{https://github.com/CNOCTAVE/octave_zstd}},
                           }</p>
                         <div class="text-h5 q-ma-md text-red-10">octave_zstd文档(BibTeX)</div>
                         <p class="q-ma-md">@techreport{CNOCTAVE2024,
-                            author = {Yu, Hongbo},
+                            author = {Yu Hongbo, },
                             title = {octave_zstd Document},
                             institution = {BA DU XIN SHANG},
                             year = {2024},
                             number = {1},
                             month = {10},
-                            url = {http://www.someurl.com/path/to/doc.pdf},
+                            url = {https://cnoctave.github.io/octave_zstd/index.html},
                             urldate = {2024-10-07},
                           }</p>
-                        <div class="text-h5 q-ma-md text-red-10">octave_zstd: Efficient Compression and Decompression Utilizing the Octave Software with Zstandard(BibTeX)</div>
-                        <p class="q-ma-md" style="white-space: normal;">@unpublished{Hongbo2024,
-                            author = {Yu, Hongbo},
-                            title = {octave_zstd: Efficient Compression and Decompression Utilizing the Octave Software with Zstandard},
+                        <div class="text-h5 q-ma-md text-red-10">octave_zstd: Efficient File and String Decompression Utilizing the ZSTD Algorithm(BibTeX)</div>
+                        <p class="q-ma-md" style="white-space: normal;">@article{https://doi.org/10.6084/m9.figshare.27186048.v1,
+                            doi = {10.6084/M9.FIGSHARE.27186048.V1},
+                            url = {https://figshare.com/articles/preprint/octave_zstd_Efficient_File_and_String_Decompression_Utilizing_the_ZSTD_Algorithm/27186048/1},
+                            author = {Yu Hongbo, },
+                            keywords = {Software architecture},
+                            title = {octave_zstd: Efficient File and String Decompression Utilizing the ZSTD Algorithm},
+                            publisher = {figshare},
                             year = {2024},
-                            note = {Available at \url{https://arxiv.org/abs/2410.00000}, arXiv:2410.00000 [cs.SE]},
+                            copyright = {Creative Commons Attribution 4.0 International}
                           }</p>
                     </div>
                 </div>
                 <q-toolbar class="bg-grey-8 text-white q-my-md shadow-2">
                     <q-btn-dropdown stretch flat label="版权所有 ©">
                       <q-list>
-                        <q-item clickable v-close-popup @click="goTo('index.html')">
+                        <q-item clickable v-close-popup @click="goTo('http://cnoctave.cn')">
                           <q-item-section>
-                            <q-item-label>© 2024 Yu Hongbo, CNOCTAVE</q-item-label>
+                            <q-item-label>© 2024 CNOCTAVE</q-item-label>
+                          </q-item-section>
+                        </q-item>
+                        <q-item clickable v-close-popup @click="goTo('https://orcid.org/0009-0007-9436-4161')">
+                          <q-item-section>
+                            <q-item-label>© 2024 Yu Hongbo</q-item-label>
                           </q-item-section>
                         </q-item>
                       </q-list>
@@ -251,7 +262,7 @@ without any warranty.
                     @click="goTo('https://creativecommons.org/licenses/by-nd/4.0/')"></q-btn>
                     <q-separator dark vertical></q-separator>
                     <q-btn stretch flat label="下载此文档的源码" 
-                    @click="goTo('index.html')"></q-btn>
+                    @click="goTo('https://github.com/CNOCTAVE/octave_zstd')"></q-btn>
                 </q-toolbar>
             </q-page-container>
 

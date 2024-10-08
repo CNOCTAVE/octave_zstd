@@ -8,4 +8,4 @@ Description: The octave_zstd package provides functions for compress and
  decompress about ZSTD format.
 Depends: octave (>= 8.0.0)
 License: GPLv3+
-Url: http://octave.sf.net
+Url: https://github.com/CNOCTAVE/octave_zstd

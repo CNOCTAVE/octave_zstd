@@ -22,8 +22,9 @@ without any warranty.
     <keyword>compress</keyword>
     <keyword>decompress</keyword>
   </keywords>
-  <url type="homepage">http://octave.sourceforge.net/image</url>
-  <url type="bugtracker">https://savannah.gnu.org/bugs/?func=additem&amp;group=octave</url>
+  <url type="homepage">https://github.com/CNOCTAVE/octave_zstd</url>
+  <url type="bugtracker">https://github.com/CNOCTAVE/octave_zstd/issues</url>
+  <url type="document">https://cnoctave.github.io/octave_zstd/index.html</url>
   <project_license>GPL-3.0+</project_license>
   <developer_name>various authors</developer_name>
   <update_contact>cnoctave@qq.com</update_contact>
