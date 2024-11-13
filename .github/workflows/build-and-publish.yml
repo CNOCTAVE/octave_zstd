@@ -14,7 +14,8 @@ jobs:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-      - run: sudo apt-get install jq -y
       - run: sudo chmod +x src/configure
-      - run: tar --warning=no-file-changed --exclude='.' --exclude='.git/' --exclude='.github/' --exclude=octave_zstd.tar.gz -czvf octave_zstd.tar.gz .
+      - run: mkdir temp
+      - run: cd temp
+      - run: tar --warning=no-file-changed --exclude='.git/' --exclude='.github/' -czvf octave_zstd.tar.gz ../*
       - run: gh release upload 1.0.3 octave_zstd.tar.gz --repo $GITHUB_REPOSITORY
