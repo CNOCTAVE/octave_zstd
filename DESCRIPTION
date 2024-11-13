@@ -1,6 +1,6 @@
 Name: octave_zstd
-Version: 1.0.2
-Date: 2024-10-10
+Version: 1.0.3
+Date: 2024-11-13
 Author: various authors
 Maintainer: Yu Hongbo <yuhongbo@member.fsf.org>, CNOCTAVE <cnoctave@qq.com>
 Title: ZSTD wrapper
