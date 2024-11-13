@@ -14,7 +14,8 @@ jobs:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-      - run: sudo chmod +x src/configure
-      - run: cd ..
+        with:
+          path: 'octave_zstd'
+      - run: sudo chmod +x octave_zstd/src/configure
       - run: tar --warning=no-file-changed --exclude='octave_zstd/.git' --exclude='octave_zstd/.github' -czvf octave_zstd.tar.gz octave_zstd
       - run: gh release upload 1.0.3 octave_zstd.tar.gz --repo $GITHUB_REPOSITORY
