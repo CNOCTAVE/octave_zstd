@@ -1,8 +1,10 @@
 octave_zstd >> Octave Use ZSTD to Compress and Decompress
 Compress File
  zstd_compress
+ tar_zstd_compress
 Decompress File
  zstd_decompress
+ tar_zstd_decompress
 Compress String
  zstd_compress_string
 Decompress String

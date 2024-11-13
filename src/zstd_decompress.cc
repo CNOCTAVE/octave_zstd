@@ -44,70 +44,26 @@ Always return @var{0}.\n\
 
 
   std::ifstream compressed_file(compressed_filename, std::ios::binary);
-  std::ofstream decompressed_file(decompressed_filename, std::ios::binary);
+  std::vector<char> compressed_data((std::istreambuf_iterator<char>(compressed_file)), std::istreambuf_iterator<char>());
+  size_t compressed_size = compressed_data.size();
 
-  if (!compressed_file || !decompressed_file) {
-    error ("zstd_decompress: cannot open files");
-  }
+  // 获取未压缩数据的大小（这通常需要外部信息，例如从文件头或其他元数据）
+  // 在这个示例中，我们假设我们有这个信息，或者使用一个足够大的缓冲区来容纳任何可能的解压缩数据。
+  // 为了简化，我们使用一个足够大的静态值。
+  // 将 std::vector<char> 转换为 const void*
+  const void* dataPtr = static_cast<const void*>(compressed_data.data());
+  size_t decompressed_size = ZSTD_getFrameContentSize(dataPtr, compressed_size);
+  std::vector<char> decompressed_buffer(decompressed_size);
 
-  // Create Zstd decompression stream
-  ZSTD_DStream* dstream = ZSTD_createDStream();
-  if (dstream == nullptr) {
-    error ("zstd_decompress: failed to create decompression stream");
-  }
-
-  // Input and output buffers
-  const size_t inBufferSize = 1 << 16;  // 64KB
-  const size_t outBufferSize = 1 << 20; // 1MB
-  std::vector<char> inBuffer(inBufferSize);
-  std::vector<char> outBuffer(outBufferSize);
-
-  // Initialize decompression stream
-  ZSTD_inBuffer input = { inBuffer.data(), inBuffer.size(), 0 };
-  ZSTD_outBuffer output = { outBuffer.data(), outBuffer.size(), 0 };
-
-  // Read and decompress data
-  while (true) {
-    // Read compressed data into input buffer
-    input.pos = 0; // Reset input buffer position
-    const void* voidPtr = static_cast<const void*>(input.src); // 转换为 const void*
-    // 不安全的转换: 从 const void* 到 char*
-    char* charPtr = const_cast<char*>(static_cast<const char*>(voidPtr));
-    compressed_file.read(charPtr, input.size);
-    if (compressed_file.eof()) {
-      input.size = compressed_file.gcount(); // Handle potential partial read at EOF
-      if (input.size == 0) break; // No more data to decompress
-    } else if (!compressed_file) {
-      ZSTD_freeDStream(dstream);
-      error ("zstd_decompress: failed to read compressed data" );
-    }
-
-    // Decompress data
-    size_t ret = ZSTD_decompressStream(dstream, &output, &input);
-    if (ZSTD_isError(ret)) {
-      ZSTD_freeDStream(dstream);
-      std::string concatenated = std::string("zstd_decompress: decompression failed: ") + std::string(ZSTD_getErrorName(ret));
+  size_t decompressed_ret = ZSTD_decompress(decompressed_buffer.data(), decompressed_buffer.size(),
+                                              compressed_data.data(), compressed_size);
+  if (ZSTD_isError(decompressed_ret)) {
+      std::string concatenated = std::string("zstd_decompress: decompression failed: ") + std::string(ZSTD_getErrorName(decompressed_ret));
       error ("%s", concatenated.c_str());
-    }
-
-    const void* voidPtrOutput = static_cast<const void*>(output.dst); // 转换为 const void*
-    // 不安全的转换: 从 const void* 到 char*
-    char* charPtrOutput = const_cast<char*>(static_cast<const char*>(voidPtrOutput));
-    // Write decompressed data to output file
-    decompressed_file.write(charPtrOutput, output.pos);
-    if (!decompressed_file) {
-      ZSTD_freeDStream(dstream);
-      error ("zstd_decompress: failed to write decompressed data" );
-    }
-
-    // If the output buffer is not full, it means we've reached the end of the compressed data
-    if (output.pos < output.size) {
-      break;
-    }
   }
 
-  // Clean up and return
-  ZSTD_freeDStream(dstream);
+  std::ofstream decompressed_file(decompressed_filename, std::ios::binary);
+  decompressed_file.write(decompressed_buffer.data(), decompressed_size);
   retval = octave_value (0);
 
   return retval;
