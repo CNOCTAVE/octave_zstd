@@ -17,5 +17,5 @@ jobs:
       - run: sudo chmod +x src/configure
       - run: mkdir temp
       - run: cd temp
-      - run: tar --warning=no-file-changed --exclude='.git/' --exclude='.github/' -czvf octave_zstd.tar.gz ../*
+      - run: tar --warning=no-file-changed --exclude='../temp' --exclude='../.git' --exclude='../.github' -czvf octave_zstd.tar.gz ../
       - run: gh release upload 1.0.3 octave_zstd.tar.gz --repo $GITHUB_REPOSITORY
