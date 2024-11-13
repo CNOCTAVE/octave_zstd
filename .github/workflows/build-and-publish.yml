@@ -17,5 +17,4 @@ jobs:
       - run: sudo apt-get install jq -y
       - run: sudo chmod +x src/configure
       - run: tar --warning=no-file-changed --exclude='.' --exclude='.git/' --exclude='.github/' --exclude=octave_zstd.tar.gz -czvf octave_zstd.tar.gz .
-      - run: release_id=$(gh release list --repo $GITHUB_REPOSITORY --limit 1 --json id --jq '.[0].id')
-      - run: gh release upload $release_id octave_zstd.tar.gz --name "octave_zstd.tar.gz" --repo $GITHUB_REPOSITORY
+      - run: gh release upload 1.0.3 octave_zstd.tar.gz --name "octave_zstd.tar.gz" --repo $GITHUB_REPOSITORY
