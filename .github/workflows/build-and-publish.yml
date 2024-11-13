@@ -15,7 +15,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: sudo chmod +x src/configure
-      - run: mkdir temp
-      - run: cd temp
-      - run: tar --warning=no-file-changed --exclude='../temp' --exclude='../.git' --exclude='../.github' -czvf octave_zstd.tar.gz ../
+      - run: cd ..
+      - run: tar --warning=no-file-changed --exclude='octave_zstd/.git' --exclude='octave_zstd/.github' -czvf octave_zstd.tar.gz octave_zstd
       - run: gh release upload 1.0.3 octave_zstd.tar.gz --repo $GITHUB_REPOSITORY
