@@ -15,7 +15,7 @@
 ## this program; if not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {} {} tar_zstd_decompress (@var{tar_filename}, @var{destination_dir})
+## @deftypefn {} {} tar_zstd_decompress (@var{tar_zstd_filename}, @var{destination_dir})
 ## 将.tar.zst文件解压缩到目标目录下
 ## @example
 ## param: source1, source2, ... , output_filename

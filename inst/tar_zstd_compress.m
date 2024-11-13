@@ -15,10 +15,10 @@
 ## this program; if not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {} {} tar_zstd_compress (@var{source1}, @var{source2}, @var{...} , @var{output_filename})
+## @deftypefn {} {} tar_zstd_compress (@var{source1}, @var{source2}, @var{...} , @var{tar_zstd_filename})
 ## 将一个或多个文件或文件夹压缩为.tar.zst文件
 ## @example
-## param: source1, source2, ... , output_filename
+## param: source1, source2, ... , tar_zstd_filename
 ##
 ## return: status
 ## @end example

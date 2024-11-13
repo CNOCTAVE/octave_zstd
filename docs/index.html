@@ -82,6 +82,14 @@ without any warranty.
                             项目首页
                         </q-item-section>
                     </q-item>
+                    <q-item clickable v-ripple @click="goToID('#repo_install')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            软件源安装
+                        </q-item-section>
+                    </q-item>
                     <q-item clickable v-ripple @click="goToID('#online_install')">
                         <q-item-section avatar>
                             <q-icon name="help" />
@@ -112,6 +120,14 @@ without any warranty.
                         </q-item-section>
                         <q-item-section>
                             依赖库
+                        </q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple @click="goToID('#dependencies-package')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            依赖包
                         </q-item-section>
                     </q-item>
                     <q-item clickable v-ripple @click="goToID('#function_usage')">
@@ -155,6 +171,11 @@ without any warranty.
                         <q-btn id="homepage" class="title1 text-white bg-primary" stretch flat
                             label="项目首页：https://github.com/CNOCTAVE/octave_zstd" @click="goTo('https://github.com/CNOCTAVE/octave_zstd')"></q-btn>
                         <q-separator></q-separator>
+                        <div id="repo_install" class="title1 q-ma-md text-primary">软件源安装</div>
+                        <p class="q-ma-md">octave_zstd可以通过Octave软件源安装。</p>
+                        <div class="text-h5 q-ma-md text-red-10">通过Octave软件源安装octave_zstd，代码如下：</div>
+                        <p class="q-ma-md">>> pkg install -forge octave_zstd</p>
+                        <q-separator></q-separator>
                         <div id="online_install" class="title1 q-ma-md text-primary">在线安装</div>
                         <p class="q-ma-md">octave_zstd可以在线安装。</p>
                         <div class="text-h5 q-ma-md text-red-10">在线安装octave_zstd，代码如下：</div>
@@ -177,6 +198,13 @@ without any warranty.
                         <div class="text-h5 q-ma-md text-red-10">在其他的Linux发行版上的命令有所不同。欢迎广大开发者补充。
                         </div>
                         <q-separator></q-separator>
+                        <div id="dependencies-package" class="title1 q-ma-md text-primary">依赖包</div>
+                        <div class="text-h5 q-ma-md text-red-10">此软件包依赖octave_tar。</div>
+                        <div class="text-h5 q-ma-md text-red-10">安装octave_tar，代码如下：</div>
+                        <p class="q-ma-md">>> pkg install -forge octave_tar</p>
+                        <div class="text-h5 q-ma-md text-red-10">在其他的Linux发行版上的命令有所不同。欢迎广大开发者补充。
+                        </div>
+                        <q-separator></q-separator>
                         <div id="function_usage" class="title1 q-ma-md text-primary">函数用法</div>
                         <div class="text-h5 q-ma-md text-red-10">zstd_compress</div>
                         <p class="q-ma-md">Loadable Function: 0 = zstd_compress(FILENAME, COMPRESSED_FILENAME)</p>
@@ -188,6 +216,16 @@ without any warranty.
                         <p class="q-ma-md">DECOMPRESSED_FILENAME)</p>
                         <p class="q-ma-md">输入压缩文件名COMPRESSED_FILENAME和解压缩后的文件名</p>
                         <p class="q-ma-md">DECOMPRESSED_FILENAME。总是返回0。</p>
+                        <q-separator></q-separator>
+                        <div class="text-h5 q-ma-md text-red-10">tar_zstd_compress</div>
+                        <p class="q-ma-md">Loadable Function: ret = tar_zstd_compress(SOURCE1, SOURCE2, ... , TAR_ZSTD_FILENAME)</p>
+                        <p class="q-ma-md">输入一个或多个文件或文件夹名SOURCE1, SOURCE2, ...和压缩后的文件名TAR_ZSTD_FILENAME。</p>
+                        <p class="q-ma-md">如果返回0，则代表压缩成功；否则代表压缩失败。</p>
+                        <q-separator></q-separator>
+                        <div class="text-h5 q-ma-md text-red-10">tar_zstd_decompress</div>
+                        <p class="q-ma-md">Loadable Function: 0 = tar_zstd_decompress(TAR_ZSTD_FILENAME, DESTINATION_DIR)</p>
+                        <p class="q-ma-md">输入压缩文件名TAR_ZSTD_FILENAME和解压缩后的文件名DESTINATION_DIR。</p>
+                        <p class="q-ma-md">如果返回0，则代表解压缩成功；否则代表解压缩失败。</p>
                         <q-separator></q-separator>
                         <div class="text-h5 q-ma-md text-red-10">zstd_compress_string</div>
                         <p class="q-ma-md">Loadable Function: COMPRESSED_STRING = zstd_compress_string(STRING)</p>
