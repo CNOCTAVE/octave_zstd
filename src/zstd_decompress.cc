@@ -41,29 +41,27 @@ Always return @var{0}.\n\
     error ("zstd_decompress: decompressed_filename should not be empty");
   std::string compressed_filename = args(0).string_value ();
   std::string decompressed_filename = args(1).string_value ();
-
-
   std::ifstream compressed_file(compressed_filename, std::ios::binary);
-  std::vector<char> compressed_data((std::istreambuf_iterator<char>(compressed_file)), std::istreambuf_iterator<char>());
-  size_t compressed_size = compressed_data.size();
-
-  // 获取未压缩数据的大小（这通常需要外部信息，例如从文件头或其他元数据）
-  // 在这个示例中，我们假设我们有这个信息，或者使用一个足够大的缓冲区来容纳任何可能的解压缩数据。
-  // 为了简化，我们使用一个足够大的静态值。
-  // 将 std::vector<char> 转换为 const void*
-  const void* dataPtr = static_cast<const void*>(compressed_data.data());
-  size_t decompressed_size = ZSTD_getFrameContentSize(dataPtr, compressed_size);
-  std::vector<char> decompressed_buffer(decompressed_size);
-
-  size_t decompressed_ret = ZSTD_decompress(decompressed_buffer.data(), decompressed_buffer.size(),
-                                              compressed_data.data(), compressed_size);
-  if (ZSTD_isError(decompressed_ret)) {
+  try
+  {
+    std::vector<char> compressed_data((std::istreambuf_iterator<char>(compressed_file)), std::istreambuf_iterator<char>());
+    size_t compressed_size = compressed_data.size();
+    const void* dataPtr = static_cast<const void*>(compressed_data.data());
+    size_t decompressed_size = ZSTD_getFrameContentSize(dataPtr, compressed_size);
+    std::vector<char> decompressed_buffer(decompressed_size);
+    size_t decompressed_ret = ZSTD_decompress(decompressed_buffer.data(), decompressed_buffer.size(),
+                                                compressed_data.data(), compressed_size);
+    if (ZSTD_isError(decompressed_ret)) {
       std::string concatenated = std::string("zstd_decompress: decompression failed: ") + std::string(ZSTD_getErrorName(decompressed_ret));
       error ("%s", concatenated.c_str());
+    }
+    std::ofstream decompressed_file(decompressed_filename, std::ios::binary);
+    decompressed_file.write(decompressed_buffer.data(), decompressed_size);
   }
-
-  std::ofstream decompressed_file(decompressed_filename, std::ios::binary);
-  decompressed_file.write(decompressed_buffer.data(), decompressed_size);
+  catch(const std::exception& e)
+  {
+    error ("%s", e.what());
+  }
   retval = octave_value (0);
 
   return retval;

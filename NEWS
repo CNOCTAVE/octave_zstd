@@ -1,3 +1,12 @@
+ ** v1.1.0
+ Add .tar.zst format support. 
+ tar_zstd_compress() for compress.
+ tar_zstd_decompress() for decompress.
+ Fix segment fault bug when call zstd_decompress()
+ function with unexist filename.
+ Fix incompletely decompress bug when a file has
+ multiple EOF char, e.g. tar file.
+-------------------------------------------------------
  ** v1.0.3
  chmod +x to src/configure
 -------------------------------------------------------
